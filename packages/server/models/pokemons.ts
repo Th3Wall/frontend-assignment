@@ -48,3 +48,17 @@ export function query(args: {
   );
   return toConnection(results, limit);
 }
+
+export function filterByType( args: { type: string } ): Connection<Pokemon> {
+  const { type } = args;
+
+  const filterType: (as: Pokemon[]) => Pokemon[] =
+      // filter only if type is defined
+      type === undefined
+          ? identity
+          : A.filter(p => p.types.map(t => t).includes(type));
+
+  const results: Pokemon[] = pipe(data, filterType);
+
+  return toConnection(results, results.length);
+}

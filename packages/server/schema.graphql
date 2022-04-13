@@ -20,7 +20,8 @@ type PokemonsConnection {
 }
 
 type Query {
+  "Query to retrieve pokemons based on the arguments provided"
   pokemons(q: String, after: ID, limit: Int): PokemonsConnection
-
+  "Query to retrieve pokemons based on the type provided"
   pokemonsByType(type: String!): PokemonsConnection
 }
