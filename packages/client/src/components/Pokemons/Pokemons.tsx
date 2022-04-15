@@ -1,27 +1,35 @@
 import * as React from "react"
-import { GET_POKEMONS } from "../../graphql/queries";
-import { QueryResults } from "../../shared/interfaces";
+import { useEffect, useState } from "react";
 import { useLazyQuery } from "@apollo/client";
+import { QueryResults } from "../../shared/interfaces";
+import { GET_POKEMONS } from "../../graphql/queries";
 
 const Pokemons = () => {
-    const [ fetchPokemons, { loading, error, data }] = useLazyQuery<QueryResults>(GET_POKEMONS, {
-        variables: { q: "Pikachu" },
-        onCompleted: (data) => console.log(data)
-    });
+    const [ nameQuery, setNameQuery ] = useState<string>();
+    const [ typeQuery, setTypeQuery] = useState<string>();
+    const [ fetchPokemons, { loading, error, data }] = useLazyQuery<QueryResults>(GET_POKEMONS);
+    const handleNameQuery = (e: React.ChangeEvent<HTMLInputElement>) => setNameQuery(e.target.value);
+    const handleTypeQuery = (e: React.ChangeEvent<HTMLInputElement>) => setTypeQuery(e.target.value);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Something went wrong!</p>;
+    useEffect(() => {
+        fetchPokemons({ variables: {
+            q: nameQuery,
+            type: typeQuery
+        }});
+    }, [fetchPokemons, nameQuery, typeQuery]);
 
     return (
         <>
-            <button onClick={() => fetchPokemons()}>Fetch</button>
-            {!loading && !error && data?.pokemons?.edges && data?.pokemons?.edges?.map((edge, idx) => (
+            <input type="text" placeholder="Search by name" value={nameQuery} onChange={e => handleNameQuery(e)}/>
+            <input type="text" placeholder="Filter by type" value={typeQuery} onChange={e => handleTypeQuery(e)}/>
+
+            {!loading && !error && data?.pokemons.edges && data?.pokemons.edges?.map((pokeEdge, idx) => (
                 <p key={idx}>
-                    <span><b>{edge?.node?.name}</b></span>
-                    {edge?.node?.types && edge?.node?.types.map((type, idx) => (
+                    <span><b>{pokeEdge.node.name}</b></span>
+                    {pokeEdge.node.types && pokeEdge.node.types.map((type, idx) => (
                         <span key={idx}>{` ${type}`}</span>
                     ))}
-                    <span> - {edge?.node?.classification}</span>
+                    <span> - {pokeEdge.node.classification}</span>
                 </p>
             ))}
         </>

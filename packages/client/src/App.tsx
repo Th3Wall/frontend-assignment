@@ -1,9 +1,17 @@
-import * as React from "react";
-import Pokemons from "./components/Pokemons/Pokemons";
+import * as React from 'react';
+import { Layout } from 'antd';
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import PageContent from "./components/PageContent/PageContent";
 
-export const App = () => (
-    <>
-        <h1>Hello World!</h1>
-        <Pokemons />
-    </>
-);
+const App = () => {
+    return (
+        <Layout className="Layout">
+            <Navbar />
+            <PageContent />
+            <Footer />
+        </Layout>
+    );
+}
+
+export default App;

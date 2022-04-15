@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_POKEMONS = gql`
-    query SearchPokemons ($q: String) {
-        pokemons(q: $q) {
+    query getPokemons ($q: String, $limit: Int, $type: String) {
+        pokemons(q: $q, limit: $limit, type: $type) {
             edges {
                 node {
                     id
@@ -11,6 +11,15 @@ export const GET_POKEMONS = gql`
                     types
                 }
             }
+            pageInfo {
+                hasNextPage
+            }
         }
+    }
+`;
+
+export const GET_POKEMON_TYPES = gql`
+    query getAllPokemonTypes {
+        pokemonsTypes
     }
 `;

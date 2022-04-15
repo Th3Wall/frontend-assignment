@@ -11,10 +11,10 @@ interface Configuration extends WebpackConfiguration {
 
 const config: Configuration = {
     mode: "development",
+    entry: "./src/index.tsx",
     output: {
         publicPath: "/",
     },
-    entry: "./src/index.tsx",
     module: {
         rules: [
             {
@@ -34,14 +34,11 @@ const config: Configuration = {
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                    // Creates `style` nodes from JS strings
                     "style-loader",
-                    // Translates CSS into CommonJS
                     "css-loader",
-                    // Compiles Sass to CSS
                     "sass-loader",
                 ],
-            },
+            }
         ],
     },
     resolve: {
