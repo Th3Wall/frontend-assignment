@@ -14,7 +14,7 @@ interface Pokemon {
   classification: string;
 }
 
-const SIZE = 20;
+const SIZE = 30;
 
 export function query(args: {
   after?: string;

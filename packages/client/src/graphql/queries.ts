@@ -1,9 +1,10 @@
 import { gql } from "@apollo/client";
 
 export const GET_POKEMONS = gql`
-    query getPokemons ($q: String, $limit: Int, $type: String) {
-        pokemons(q: $q, limit: $limit, type: $type) {
+    query getPokemons($q: String, $after: ID, $limit: Int, $type: String) {
+        pokemons(q: $q, after: $after, limit: $limit, type: $type) {
             edges {
+                cursor
                 node {
                     id
                     name
@@ -12,6 +13,7 @@ export const GET_POKEMONS = gql`
                 }
             }
             pageInfo {
+                endCursor
                 hasNextPage
             }
         }

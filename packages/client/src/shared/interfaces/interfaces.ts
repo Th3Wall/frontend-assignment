@@ -10,6 +10,13 @@ export interface Pokemon {
     types: string[]
 }
 
+export interface PokemonNode {
+    id: string
+    name: string
+    classification: string
+    types: string
+}
+
 export interface PokemonEdge {
     cursor: string
     node: Pokemon
@@ -22,7 +29,8 @@ export interface PokemonConnection {
 
 export interface QueryResults {
     pokemons: PokemonConnection,
-    pokemonsByType: PokemonConnection
+    pokemonsByType: PokemonConnection,
+    pokemonsTypes: string[]
 }
 
 export interface QueryResultsData {

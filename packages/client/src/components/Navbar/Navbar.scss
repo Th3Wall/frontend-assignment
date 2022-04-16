@@ -1,5 +1,33 @@
+@import "../../scss/variables";
+
 .Navbar {
-  h3 {
-    color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $pokemon-blue;
+  box-shadow: $box-shadow;
+
+  &__title {
+    margin: 0;
+    color: $white;
+    font-weight: 700;
+  }
+
+  &__ref {
+    line-height: 1;
+    
+    &--icon {
+      svg {
+        width: 1.75rem;
+        height: 1.75rem;
+        fill: $white;
+        transition: fill .2s ease-in-out;
+        
+        &:hover {
+          fill: rgba($white, .6);
+          cursor: pointer;
+        }
+      }
+    }
   }
 }

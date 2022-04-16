@@ -1,12 +1,24 @@
+@import "../../scss/variables";
+
 .Footer {
-  padding: 1rem;
-  background-color: #F94C43;
-  border-top: 1px solid #eaeaea;
+  padding: .8rem 1rem;
+  background-color: $pokemon-blue;
   text-align: center;
 
-  h4 {
+  &__text {
     margin: 0;
-    color: #FFFFFF;
-    font-size: .9rem;
+    color: $white;
+    font-size: .8rem;
+
+    a {
+      color: $white;
+      font-weight: 700;
+      text-decoration: underline;
+      transition: opacity .2s ease-in-out;
+
+      &:hover {
+        opacity: .7;
+      }
+    }
   }
 }
