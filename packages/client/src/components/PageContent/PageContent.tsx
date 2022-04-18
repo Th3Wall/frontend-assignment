@@ -2,15 +2,14 @@ import "./PageContent.scss"
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useLazyQuery, useQuery } from "@apollo/client";
-import { PokemonNode, QueryResults } from "../../shared/interfaces/interfaces";
+import { QueryResults } from "../../shared/interfaces/interfaces";
 import { GET_POKEMONS, GET_POKEMON_TYPES } from '../../graphql/queries';
-import { Col, Layout, Row, Select, Table} from "antd";
-import { ColumnsType } from "antd/lib/table";
-import Input from "antd/lib/input/Input";
+import Search from '../Search/Search';
+import Results from '../Results/Results';
+import { Col, Layout, Row } from "antd";
 
 const PageContent = () => {
-    const { Option } = Select;
-    const [ nameQuery, setNameQuery ] = useState<string>();
+    const [ nameQuery, setNameQuery ] = useState<string>("");
     const [ typeQuery, setTypeQuery ] = useState<string>();
     const handleNameQuery = (e: string) => setNameQuery(e);
     const handleTypeQuery = (e: string) => setTypeQuery(e);
@@ -21,12 +20,6 @@ const PageContent = () => {
     const pokemonList = data?.pokemons.edges.map(({ node: { id, name, types, classification }}) => ({
         id, name, types: types.join(', '), classification
     }));
-    
-    const columns: ColumnsType<PokemonNode> = [
-        { key: 'name', title: 'Name', dataIndex: 'name' },
-        { key: 'classification', title: 'Classification', dataIndex: 'classification' },
-        { key: 'types', title: 'Types', dataIndex: 'types' }
-    ];
     
     useEffect(() => {
         fetchPokemons({ variables: {
@@ -39,31 +32,15 @@ const PageContent = () => {
         <Layout.Content className="PageContent">
             <Row>
                 <Col span={24}>
-                    <div className="search__wrp">
-                        <Input
-                            type="text"
-                            size="large"
-                            placeholder="Search Pokémon by name"
-                            value={nameQuery}
-                            onChange={e => handleNameQuery(e.target.value)}
+                    {pokemonTypesList && (
+                        <Search
+                            nameQuery={nameQuery}
+                            pokemonTypesList={pokemonTypesList}
+                            nameQueryHandler={handleNameQuery}
+                            typeQueryHandler={handleTypeQuery}
                         />
-                        <Select
-                            className="search__select"
-                            defaultValue="All types"
-                            size="large"
-                            dropdownMatchSelectWidth
-                            onChange={(e) => handleTypeQuery(e)}
-                        >
-                            <Option key="all" value="">All types</Option>
-                            {pokemonTypesList && pokemonTypesList.pokemonsTypes.map((type, idx) => (
-                                <Option key={idx} value={type}>{type}</Option>
-                            ))}
-                        </Select>
-                    </div>
-
-                    <div className="results__wrp">
-                        <Table dataSource={pokemonList} columns={columns} loading={loading} />
-                    </div>
+                    )}
+                    {pokemonList && <Results results={pokemonList} loading={loading} />}
                 </Col>
             </Row>
         </Layout.Content>

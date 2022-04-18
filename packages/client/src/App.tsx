@@ -6,7 +6,7 @@ import PageContent from "./components/PageContent/PageContent";
 
 const App = () => {
     return (
-        <Layout className="Layout">
+        <Layout className="App">
             <Navbar />
             <PageContent />
             <Footer />

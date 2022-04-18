@@ -12,21 +12,4 @@
     width: 100%;
     height: 100%;
   }
-
-  .search {
-    &__wrp {
-      display: flex;
-      align-items: center;
-    }
-
-    &__select {
-      width: 25%;
-    }
-  }
-
-  .results {
-    &__wrp {
-      margin-top: 2rem;
-    }
-  }
 }
