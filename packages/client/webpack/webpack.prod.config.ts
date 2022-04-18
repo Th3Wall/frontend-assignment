@@ -37,6 +37,10 @@ const config: Configuration = {
                     "sass-loader",
                 ],
             },
+            {
+                test: /\.(png|jpg|jpeg|gif)$/i,
+                type: "asset/resource",
+            },
         ],
     },
     resolve: {
@@ -45,6 +49,7 @@ const config: Configuration = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "src/index.html",
+            favicon: "src/assets/images/favicon.ico"
         }),
         new ForkTsCheckerWebpackPlugin({
             async: false,

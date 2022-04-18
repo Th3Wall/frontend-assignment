@@ -1,9 +1,14 @@
+@import "../../scss/mixins";
 @import "../../scss/variables";
 
 .Footer {
-  padding: .8rem 1rem;
+  padding: .8rem 1.5rem;
   background-color: $pokemon-blue;
   text-align: center;
+
+  @include mq('md') {
+    padding: .8rem 3.5rem;
+  }
 
   &__text {
     margin: 0;

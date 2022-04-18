@@ -10,7 +10,7 @@ import { Col, Layout, Row } from "antd";
 
 const PageContent = () => {
     const [ nameQuery, setNameQuery ] = useState<string>("");
-    const [ typeQuery, setTypeQuery ] = useState<string>();
+    const [ typeQuery, setTypeQuery ] = useState<string>("");
     const handleNameQuery = (e: string) => setNameQuery(e);
     const handleTypeQuery = (e: string) => setTypeQuery(e);
     

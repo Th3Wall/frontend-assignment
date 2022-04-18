@@ -38,7 +38,11 @@ const config: Configuration = {
                     "css-loader",
                     "sass-loader",
                 ],
-            }
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif)$/i,
+                type: "asset/resource",
+            },
         ],
     },
     resolve: {
@@ -47,6 +51,7 @@ const config: Configuration = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "src/index.html",
+            favicon: "src/assets/images/favicon.ico"
         }),
         new HotModuleReplacementPlugin(),
         new ForkTsCheckerWebpackPlugin({
