@@ -1,0 +1,42 @@
+@import "../../scss/mixins";
+@import "../../scss/variables";
+
+.Error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__img {
+    margin-bottom: 2.5rem;
+    max-width: 10rem;
+    width: 100%;
+    
+    @include mq('md') {
+      max-width: 25%;
+    }
+  }
+
+  &__title {
+    margin-bottom: .5rem;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: $pokemon-blue;
+    
+    @include mq('md') {
+      margin: 0;
+      font-size: 1.6rem;
+      line-height: 1.5;
+    }
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 300;
+
+    @include mq('md') {
+      font-size: 1.1rem;
+    }
+  }
+}
