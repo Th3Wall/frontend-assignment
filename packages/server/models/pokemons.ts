@@ -14,7 +14,7 @@ interface Pokemon {
   classification: string;
 }
 
-const SIZE = 30;
+const SIZE_LIMIT = 15;
 
 export function query(args: {
   after?: string;
@@ -22,7 +22,7 @@ export function query(args: {
   q?: string;
   type?: string;
 }): Connection<Pokemon> {
-  const { after, q, type, limit = SIZE } = args;
+  const { after, q, type, limit = SIZE_LIMIT } = args;
 
   const filterByQ: (as: Pokemon[]) => Pokemon[] =
     // filter only if q is defined

@@ -16,12 +16,14 @@ const PageContent = () => {
     const handleNameQuery = (e: string) => setNameQuery(e);
     const handleTypeQuery = (e: string) => setTypeQuery(e);
     
-    const [ fetchPokemons, { loading, data, error } ] = useLazyQuery<QueryResults>(GET_POKEMONS);
+    const [ fetchPokemons, { loading, data, error, fetchMore } ] = useLazyQuery<QueryResults>(GET_POKEMONS);
     const { data: pokemonTypesList } = useQuery<QueryResults>(GET_POKEMON_TYPES);
 
     const pokemonList = data?.pokemons.edges.map(({ node: { id, name, types, classification }}) => ({
         id, name, types: types.join(', '), classification
     }));
+    const hasNextPage = data?.pokemons.pageInfo.hasNextPage;
+    const endCursor = data?.pokemons.pageInfo.endCursor;
     
     useEffect(() => {
         fetchPokemons({ variables: {
@@ -29,6 +31,24 @@ const PageContent = () => {
             type: typeQuery
         }});
     }, [fetchPokemons, nameQuery, typeQuery]);
+
+    const handleLoadMore = () => {
+        fetchMore({
+            variables: {
+                q: nameQuery,
+                type: typeQuery,
+                after: endCursor
+            },
+            updateQuery: (prevResults, { fetchMoreResult }) => {
+                if (!fetchMoreResult) return prevResults;
+                fetchMoreResult.pokemons.edges = [
+                    ...prevResults.pokemons.edges,
+                    ...fetchMoreResult.pokemons.edges
+                ]
+                return fetchMoreResult;
+            }
+        });
+    }
 
     return (
         <Layout.Content className="PageContent">
@@ -45,7 +65,14 @@ const PageContent = () => {
                                     typeQueryHandler={handleTypeQuery}
                                 />
                             )}
-                            {pokemonList && <Results results={pokemonList} loading={loading} />}
+                            {pokemonList && (
+                                <Results
+                                    results={pokemonList}
+                                    loading={loading}
+                                    hasMoreData={hasNextPage}
+                                    loadMoreHandler={handleLoadMore}
+                                />
+                            )}
                         </>
                     )}
                 </Col>

@@ -3,7 +3,7 @@ import * as React from "react";
 import { ResultsProps } from './models/ResultsTypes';
 import { PokemonNode } from '../../shared/interfaces/interfaces';
 import { ColumnsType } from 'antd/lib/table';
-import { Table } from 'antd';
+import { Button, Table } from 'antd';
 import openedPokeball from "../../assets/images/opened_pokeball.png";
 
 const NoResults = () => (
@@ -14,7 +14,7 @@ const NoResults = () => (
 );
 
 const Results = (props: ResultsProps) => {
-    const { results, loading } = props;
+    const { results, loading, hasMoreData, loadMoreHandler } = props;
 
     // Little trick to customize Antd's empty table message
     const locale = {
@@ -29,7 +29,10 @@ const Results = (props: ResultsProps) => {
 
     return (
         <div className="Results">
-            <Table dataSource={results} columns={columns} loading={loading} locale={locale} />
+            <Table dataSource={results} columns={columns} loading={loading} locale={locale} pagination={false} />
+            {hasMoreData && (
+                <Button className="Results__loadMore" disabled={loading} onClick={() => loadMoreHandler()}>Load More</Button>
+            )}
         </div>
     );
 }
