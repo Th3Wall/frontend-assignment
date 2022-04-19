@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useLazyQuery, useQuery } from "@apollo/client";
 import { QueryResults } from "../../shared/interfaces/interfaces";
 import { GET_POKEMONS, GET_POKEMON_TYPES } from '../../graphql/queries';
+import Heading from "../Heading/Heading";
 import Search from '../Search/Search';
 import Results from '../Results/Results';
 import Error from "../Error/Error";
@@ -35,6 +36,7 @@ const PageContent = () => {
                 <Col span={24}>
                     {error ? <Error /> : (
                         <>
+                            <Heading />
                             {pokemonTypesList && (
                                 <Search
                                     nameQuery={nameQuery}

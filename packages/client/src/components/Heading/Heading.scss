@@ -1,0 +1,44 @@
+@import "../../scss/mixins";
+@import "../../scss/variables";
+
+.Heading {
+  margin-bottom: 2.5rem;
+  
+  &__logo {
+    margin: 0 auto;
+    margin-bottom: .5rem;
+    max-width: 20rem;
+    width: 100%;
+
+    @include mq('md') {
+      max-width: 28rem;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    color: $pokemon-blue;
+
+    @include mq('md') {
+      font-size: 2rem;
+      letter-spacing: -1px;
+    }
+  }
+  
+  &__text {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    font-weight: 400;
+    color: $pokemon-blue;
+    
+    @include mq('md') {
+      font-size: 1.3rem;
+      line-height: 1.6;
+    }
+  }
+}
