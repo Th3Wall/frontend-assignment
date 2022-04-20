@@ -5,14 +5,7 @@ import { identity } from "fp-ts/lib/function";
 import { eqString } from "fp-ts/lib/Eq";
 import { data } from "../data/pokemons";
 import { toConnection, slice } from "../functions";
-import { Connection } from "../types";
-
-interface Pokemon {
-  id: string;
-  name: string;
-  types: string[];
-  classification: string;
-}
+import { Connection, Pokemon } from "../types";
 
 const SIZE_LIMIT = 15;
 
