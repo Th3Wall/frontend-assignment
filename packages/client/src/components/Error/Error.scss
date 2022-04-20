@@ -18,25 +18,29 @@
 
   &__title {
     margin-bottom: .5rem;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     line-height: 1.8;
+    font-weight: 600;
+    letter-spacing: -0.5px;
     color: $pokemon-blue;
     
     @include mq('md') {
       margin: 0;
-      font-size: 1.6rem;
-      line-height: 1.5;
+      font-size: 2rem;
+      letter-spacing: -1px;
     }
   }
 
   &__text {
     margin: 0;
-    font-size: 1rem;
-    line-height: 1.5;
-    font-weight: 300;
-
+    font-size: 1.1rem;
+    line-height: 1.4;
+    font-weight: 400;
+    color: $pokemon-blue;
+    
     @include mq('md') {
-      font-size: 1.1rem;
+      font-size: 1.3rem;
+      line-height: 1.6;
     }
   }
 }

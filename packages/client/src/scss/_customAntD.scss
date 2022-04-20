@@ -1,0 +1,134 @@
+/*
+// This stylesheet contains all the customizations made for some of the components of the Ant Design library.
+*/
+
+.ant {
+    &-input {
+        &:hover,
+        &:focus,
+        &-focused {
+            border-color: rgba($pokemon-blue, 0.9);
+        }
+
+        &:focus,
+        &-focused {
+            box-shadow: 0 8px 24px 0 rgba($pokemon-blue, 0.2);
+        }
+    }
+
+    &-select {
+        &-single {
+            &.ant-select-lg {
+                &:not(.ant-select-customize-input) {
+                    .ant-select-selector {
+                        height: auto;
+                        padding: 0.4rem 1.2rem;
+                        border-radius: $default-radius;
+                    }
+                }
+            }
+        }
+
+        &-dropdown {
+            margin-top: .5rem;
+            padding: 0;
+            border-radius: $default-radius;
+        }
+
+        &-item {
+            padding: 0.4rem 1.2rem;
+            
+            &-option {
+                min-height: 2.5rem;
+                align-items: center;
+
+                &-active,
+                &-selected {
+                    &:not(.ant-select-item-option-disabled) {
+                        background-color: rgba($pokemon-blue, 0.15);
+                    }
+                }
+
+                &-selected {
+                    &:not(.ant-select-item-option-disabled) {
+                        color: $pokemon-blue;
+                    }
+                }
+            }
+
+        }
+
+        &:not(.ant-select-disabled) {
+            &:hover {
+                .ant-select-selector {
+                    border-color: rgba($pokemon-blue, 0.9);
+                }
+            }
+        }
+
+        &-focused {
+            &:not(.ant-select-disabled) {
+                &.ant-select {
+                    &:not(.ant-select-customize-input) {
+                        .ant-select-selector {
+                            border-color: rgba($pokemon-blue, 0.9);
+                            box-shadow: 0 8px 24px 0 rgba($pokemon-blue, 0.2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-table {
+        border-radius: $default-radius;
+        
+        &-wrapper {
+            border-radius: $default-radius;
+        }
+
+        &-container {
+            border-top-left-radius: $default-radius;
+            border-top-right-radius: $default-radius;
+
+            table > thead > tr:first-child th:first-child {
+                border-top-left-radius: $default-radius;
+            }
+            table > thead > tr:last-child th:last-child {
+                border-top-right-radius: $default-radius;
+            }
+        }
+
+        &-thead {
+            > tr > th {
+                font-size: .9rem;
+                font-weight: 500;
+                color: $pokemon-blue;
+                background: rgba($pokemon-blue, 0.15);
+                border-bottom-color: rgba($pokemon-blue, 0.2);
+
+                &:before {
+                    background-color: rgba($pokemon-blue, 0.2) !important;
+                }
+            }
+        }
+        
+        &-tbody {
+            > tr {
+                &.ant-table-row {
+                    &:hover {
+                        > td {
+                            background-color: rgba($pokemon-blue, 0.2);
+                        }
+                    }
+                }
+
+                > td {
+                    &.ant-table-cell-row-hover {
+                        background-color: rgba($pokemon-blue, 0.2);
+                    }
+                }
+            }
+        }
+    }
+}

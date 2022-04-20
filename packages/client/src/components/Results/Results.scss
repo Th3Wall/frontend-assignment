@@ -1,7 +1,8 @@
+@import "../../scss/mixins";
 @import "../../scss/variables";
 
 .Results {
-  margin-top: 2rem;
+  margin-top: 3rem;
 
   &__empty {
     padding: 1.5rem;
@@ -20,10 +21,33 @@
       font-size: 1rem;
       line-height: 1.2;
       font-weight: 500;
+      color: rgba($pokemon-blue, 0.7);
     }
   }
 
   &__loadMore {
     margin-top: 2rem;
+    background-color: $pokemon-blue;
+    font-size: .9rem;
+    font-weight: 500;
+    color: $white;
+    box-shadow: $box-shadow;
+    
+    @include mq('md') {
+      font-size: 1rem;
+    }
+    
+    &.ant-btn-round {
+      padding: .6rem 1.8rem;
+      height: auto;
+      border-radius: $default-radius;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: transparent;
+      color: $pokemon-blue;
+      border-color: $pokemon-blue;
+    }
   }
 }

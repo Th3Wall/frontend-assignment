@@ -11,8 +11,9 @@ const Search = (props: SearchProps) => {
         <div className="Search">
             <Input
                 type="text"
-                size="large"
+                className="Search__input"
                 placeholder="Search Pokémon by name"
+                size="large"
                 value={nameQuery}
                 onChange={e => nameQueryHandler(e.target.value)}
             />

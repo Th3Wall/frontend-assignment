@@ -29,9 +29,16 @@ const Results = (props: ResultsProps) => {
 
     return (
         <div className="Results">
-            <Table dataSource={results} columns={columns} loading={loading} locale={locale} pagination={false} />
+            <Table size="large" dataSource={results} columns={columns} loading={loading} locale={locale} pagination={false} />
             {hasMoreData && (
-                <Button className="Results__loadMore" disabled={loading} onClick={() => loadMoreHandler()}>Load More</Button>
+                <Button
+                    className="Results__loadMore"
+                    shape="round"
+                    disabled={loading}
+                    onClick={() => loadMoreHandler()}
+                >
+                    Load More
+                </Button>
             )}
         </div>
     );
